@@ -187,8 +187,8 @@ def main():
     # =========================
     # 改这里：输入输出路径
     # =========================
-    bag_path = "/mnt/data_backup/Workplace/Realtime_Dynamic_Scene/video_set/video2.bag"
-    save_dir = "/mnt/data_backup/Workplace/Realtime_Dynamic_Scene/output/video2_result"
+    bag_path = "/mnt/data_backup/Workplace/Realtime_Dynamic_Scene/video_set/video5.bag"
+    save_dir = "/mnt/data_backup/Workplace/Realtime_Dynamic_Scene/output/video5_result"
     plane_path = os.path.join(save_dir, "table_plane.npy")
     warmup_frames = 10
 
@@ -215,18 +215,41 @@ def main():
         table_dilate_ksize=3,
         table_erode_for_objects_ksize=21,
         table_min_area_px=5000,
+
         object_plane_clearance=0.015,
         object_max_distance=0.60,
         object_open_ksize=3,
-        object_close_ksize=7,
-        object_dilate_ksize=3,
+        object_close_ksize=3,
+        object_dilate_ksize=1,
         object_min_area_px=400,
-        dbscan_eps=0.025,
-        dbscan_min_points=120,
-        min_cluster_points=350,
-        object_mask_close_ksize=7,
-        object_mask_dilate_ksize=3,
+
+        dbscan_eps=0.015,
+        dbscan_min_points=80,
+        min_cluster_points=200,
+
+        object_mask_close_ksize=3,
+        object_mask_dilate_ksize=1,
         min_object_mask_area=400,
+
+        enable_split_merged_cluster=True,
+        split_check_min_points=1200,
+        split_check_min_mask_area=2500,
+        split_check_bbox_max_side_px=120,
+        split_gaussian_ksize=5,
+        split_dist_thresh_ratio=0.38,
+        split_height_percentile_clip_low=5.0,
+        split_height_percentile_clip_high=99.0,
+        split_min_peak_components=2,
+        split_min_submask_area=300,
+        split_min_subcluster_points=150,
+        save_split_debug=True,
+
+        support_check_bottom_band=0.02,
+        support_check_min_bottom_pixels=80,
+        support_check_min_inside_ratio=0.60,
+        edge_margin_px=12,
+        edge_reject_if_bottom_inside_ratio_below=0.75,
+
         save_dir=save_dir,
         table_pcd_name="table.ply",
         object_pcd_prefix="object_",
